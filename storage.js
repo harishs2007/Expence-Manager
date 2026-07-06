@@ -24,5 +24,5 @@ function deleteTransaction(id) {
 
 }
 function clearTransactions() {
-    localStorage.removeItem("transcations");
+    localStorage.removeItem("transactions");
 }

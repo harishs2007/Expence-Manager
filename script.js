@@ -3,15 +3,15 @@ var titleInput = document.getElementById("title");
 var amountInput = document.getElementById("amount");
 var typeInput = document.getElementById("type");
 var categoryinput = document.getElementById("category");
-var dateInput = document.getElementById("data");
+var dateInput = document.getElementById("date");
 var transactionBody = document.getElementById("transactionBody");
 var noDataMsg = document.getElementById("noDataMsg");
 var searchInput = document.getElementById("searchInput");
-var cleanBtn = document.getElementById("clearBtn");
+var clearBtn = document.getElementById("clearBtn");
 var totalIncomeE1 = document.getElementById("totalIncome");
 var totalExpenseE1 = document.getElementById("totalExpense");
 var balanceE1 = document.getElementById("balance");
- dataInput.valueAsDate = new Date();
+ dateInput.valueAsDate = new Date();
  form.addEventListener("submit", function (e) {
     e.preventDefault();
     var newTransaction = {
@@ -36,7 +36,7 @@ var balanceE1 = document.getElementById("balance");
 
 
  clearBtn.addEventListener("click", function () {
-    var sure = confrim("Are you sure you want to delete all transactions?");
+    var sure = confirm("Are you sure you want to delete all transactions?");
     if (sure) {
         clearTransactions();
         renderAll();
@@ -45,7 +45,7 @@ var balanceE1 = document.getElementById("balance");
 });
 transactionBody.addEventListener("click", function (e) {
     if (e.target.classList.contains("delete-btn")) {
-        var id = Number(e.target.getAttribute(data-id));
+        var id = Number(e.target.getAttribute("data-id"));
         deleteTransaction(id);
         renderAll();
     }
@@ -60,19 +60,19 @@ function renderTable(transactions) {
     var searchText = searchInput.value.toLowerCase();
     transactionBody.innerHTML = "";
     var filtered = transactions.filter(function (t) {
-        return t.title.toLowerCase().includes(searchtext);
+        return t.title.toLowerCase().includes(searchText);
     } );
     if (filtered.length == 0) {
         noDataMsg.style.display = "block";
     }
     else{
-        noDataMsg.style.display = "home";
+        noDataMsg.style.display = "none";
     }
 
     for (var i = 0; i < filtered.length; i++){
         var t = filtered[i];
         var row = document.createElement("tr");
-        var amountClass = t.type === "incom" ? "amount-income" : "amount-expense";
+        var amountClass = t.type === "income" ? "amount-income" : "amount-expense";
         var sign = t.type === "income" ? "+" : "-";
         row.innerHTML = 
         "<td>" + t.title + "</td>" +
@@ -101,14 +101,14 @@ function renderTotals(transactions) {
 
     totalIncomeE1.textContent = "₹" + income;
     totalExpenseE1.textContent = "₹" + expense;
-    balanceE1.textContent = "₹" + (iincome - expense); 
+    balanceE1.textContent = "₹" + (income - expense); 
 }
 
 
 function renderCharData(transactions) {
  var categoryTotals = {};
 
- for (var i = 0;i < transactions; i++) {
+ for (var i = 0;i < transactions.length; i++) {
     var t = transactions[i];
     if (t.type === "expense"){
       if (categoryTotals[t.category]){

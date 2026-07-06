@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <img>
+        <img src="images/wallet.svg" class="logo">
         <h1>My Expense Tracker</h1>
     </header>
     <section class="summary">
      <div class="card income-card">
-        <img>
+        <img src="images\income.svg">
         <div>
             <p>Total Income</p>
             <h2 id="totalIncome">₹0</h2>
         </div>
      </div>
      <div class="card expense-card">
-        <img>
+        <img src="images\expense.svg">
         <div>
             <p>Total Expense</p>
             <h2 id="totalExpense">₹0</h2>
         </div>
      </div>
      <div class="card balance-card">
-        <img src="" alt="">
+        <img src="images\piggy.svg" alt="">
         <div>
             <p>Balance</p>
             <h2 id="balance">₹0</h2>
@@ -44,7 +45,7 @@
              <label for="type">Type</label>
              <select id="type">
                 <option value="income">Income</option>
-                <option value="expense"></option>
+                <option value="expense">Expense</option>
              </select>
              <label for="category">Category</label>
              <select id="category">
@@ -93,5 +94,7 @@
     </footer>
 
     <script src="storage.js"></script>
+    <script src="chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

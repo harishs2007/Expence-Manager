@@ -11,12 +11,12 @@ var chartColors = ["#2196f3", "#f44336", "#4CAF50", "#9C27B0", "#FF5722", "#0096
     var labels = Object.keys(categoryTotals);
     var total = 0;
     for (var i = 0; i < labels.length; i++) {
-        total = total + categorytotals[labels[i]];
+        total = total + categoryTotals[labels[i]];
     }
 
 
     if (total === 0) {
-        ctx.beginpath();
+        ctx.beginPath();
         ctx.arc(125, 125, 100, 0, 2 * Math.PI);
         ctx.fillStyle = "#e0e0e0";
         ctx.fill();
@@ -29,11 +29,11 @@ var chartColors = ["#2196f3", "#f44336", "#4CAF50", "#9C27B0", "#FF5722", "#0096
     for (var i = 0; i < labels.length; i++) {
         var value = categoryTotals[labels[i]];
         var sliceAngle = (value / total) * 2 * Math.PI;
-        var color = charColors[i % chartColors.length];
+        var color = chartColors[i % chartColors.length];
 
         ctx.beginPath();
         ctx.moveTo(125, 125);
-        ctx.arc(125, 125, 100, startAngle, startAngle + sliceAngel);
+        ctx.arc(125, 125, 100, startAngle, startAngle + sliceAngle);
         ctx.closePath();
         ctx.fillStyle = color;
         ctx.fill();
@@ -41,7 +41,7 @@ var chartColors = ["#2196f3", "#f44336", "#4CAF50", "#9C27B0", "#FF5722", "#0096
         startAngle = startAngle + sliceAngle;
        
         var li = document.createElement("li");
-        li.innerHTML = "<span class='color-box' style='blackground:" + color + "'></span>" + labels[i] + " - ₹" + value;
+        li.innerHTML = "<span class='color-box' style='background:" + color + "'></span>" + labels[i] + " - ₹" + value;
         legend.appendChild(li);
     }
  }
